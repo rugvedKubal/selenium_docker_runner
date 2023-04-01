@@ -3,7 +3,12 @@ pipeline {
     stages {
         stage('Pull latest automation docker image from docker hub') {
             steps {
-                sh 'docker pull rugvedk/selenium-docker'
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                        image = docker.image('rugvedk/selenium-docker:latest')
+                        image.pull()
+                    }
+                }
             }
         }
         stage('Start selenium grid using docker-compose file in project') {
