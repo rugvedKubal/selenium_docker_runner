@@ -11,10 +11,11 @@ pipeline {
                 sh 'docker-compose up testInChrome testInFirefox'
             }
         }
-        stage('Stop selenium grid') {
-            steps {
-                sh 'docker-compose down'
-            }
+    }
+    post {
+        always {
+            archiveArtifacts artifacts: 'output/**'
+            sh 'docker-compose down'
         }
     }
 }

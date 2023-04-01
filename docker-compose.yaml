@@ -23,7 +23,7 @@ services:
       - BROWSER=chrome
       - HUB_HOST=hub
     volumes:
-      - ./test-result-chrome:/usr/test/test-output
+      - ./output/test-result-chrome:/usr/test/test-output
   testInFirefox:
     image: rugvedk/selenium-docker
     depends_on:
@@ -33,4 +33,4 @@ services:
       - BROWSER=firefox
       - HUB_HOST=hub
     volumes:
-      - ./test-result-firefox:/usr/test/test-output
+      - ./output/test-result-firefox:/usr/test/test-output
